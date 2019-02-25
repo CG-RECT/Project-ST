@@ -1,0 +1,19 @@
+目录
+    -log                    日志输出模块
+    -sql                    使用sql语句
+    -worklog                工作日志
+    @cloud-api              对外提供微服务接口（暂未使用）
+    @cloud-service          对外提供微服务实现（暂未使用）
+    @cloud-webapp           前台web工程
+    @cloud-webapp-admin     后台web工程
+    @common-api             业务逻辑接口
+    @common-service         业务逻辑实现模块
+    @core-business          核心业务模块
+    @data-access            数据库连接模块
+    @data-entity            数据库实体类模块
+    @util                   公共方法模块
+
+总的来说，cloud-webapp、cloud-webapp-admin为web工程，可以运行。
+            cloud-api、cloud-service是为以后扩展为springcloud工程作为服务模块的准备
+            后期可以根据不同的业务类型，添加biz-business模块作为核心模块的实现类，用以实现对不同的业务有不同的实现
+

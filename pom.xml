@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.mingmingcao.stpro</groupId>
-  <artifactId>Project-ST</artifactId>
+  <artifactId>project-st</artifactId>
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>CloudApi</module>
@@ -25,21 +25,65 @@
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>1.7</java.version>
-    <!--<maven.compiler.source>1.7</maven.compiler.source>-->
-    <!--<maven.compiler.target>1.7</maven.compiler.target>-->
-  </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+  <!-- jar包上传地址 -->
+  <distributionManagement>
+    <repository>
+      <id>Project-ST</id>
+      <name>Project-ST Release</name>
+      <url>http://106.14.7.193:8081/nexus/content/repositories/Project-ST-Release/</url>
+    </repository>
+    <snapshotRepository>
+      <id>Project-ST</id>
+      <name>Project-ST Snapshots</name>
+      <url>http://106.14.7.193:8081/nexus/content/repositories/Project-ST-Snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+  <!-- 构件下载地址 -->
+  <repositories>
+    <repository>
+      <id>Project-ST</id>
+      <name>project-st</name>
+      <url>http://106.14.7.193:8081/nexus/content/repositories/Project-ST-Release/</url>
+      <snapshots>
+        <!-- 不支持开启仓库的快照版本下载支持 -->
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>Project-ST</id>
+      <name>project-st</name>
+      <url>http://106.14.7.193:8081/nexus/content/repositories/Project-ST-Snapshots/</url>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>nexus-reader</id>
+      <name>nexus-reader</name>
+      <url>http://106.14.7.193:8081/nexus/content/repositories/central/</url>
+      <snapshots>
+        <!-- 支持开启仓库的快照版本下载支持 -->
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+  <!-- 插件下载地址 -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>nexus-reader</id>
+      <name>nexus-reader</name>
+      <url>http://106.14.7.193:8081/nexus/content/repositories/central/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 
   <build>
     <finalName>Project-ST</finalName>
@@ -57,6 +101,11 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
+          <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -77,4 +126,10 @@
       </plugins>
     </pluginManagement>
   </build>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.7</java.version>
+  </properties>
+
 </project>
